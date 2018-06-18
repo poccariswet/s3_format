@@ -52,14 +52,14 @@ for date in dates:
         ExpressionType='SQL',
         Expression=sql,
         InputSerialization = {'CSV': {"FileHeaderInfo": "IGNORE"}},
-        OutputSerialization = {'JSON': {}},
+        OutputSerialization = {'CSV': {}},
         )
 
     for event in r['Payload']:
         if 'Records' in event:
             records += event['Records']['Payload']
-        rdata.append(records.decode('utf-8', 'replace'))
-        records=b""
+    rdata.append(records.decode('utf-8', 'replace'))
+    records=b""
 
 #format_csv_3Dlist = [[x.split(',') for x in data] for data in [x.split('\n') for x in rdata]] #split csv , \n
 
